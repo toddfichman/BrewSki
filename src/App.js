@@ -59,6 +59,7 @@ class App extends Component {
       if(state.length > 2) { //for if there is zip attached
         state = state[0] + state[1];
       }
+      state = abbrState(state, 'name')
       let capitalizedState = this.capitalizeFirstLetter(state);
       let townBreweryInfo = [];
       let stateBreweryInfo = [];
