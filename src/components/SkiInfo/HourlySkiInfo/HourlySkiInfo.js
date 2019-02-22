@@ -13,7 +13,7 @@ export default class HourlySkiInfo extends Component {
 
   render() {
     let day = this.props.day
-    console.log(this.props.day)
+    // console.log(this.props.day)
 
     //PASSING DOWN EACH DAY INDIVDUALY
     //NEED TO SEND BACK A COLLAPSABLE CARD FOR EACH DAY

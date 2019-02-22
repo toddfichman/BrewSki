@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Jumbotron, Container, Row, Col, Form, FormGroup, Input, InputGroupAddon, InputGroup, Button, Label, CardHeader } from 'reactstrap';
+import Autocomplete from "react-google-autocomplete";
+
+import { abbrState } from './helpers/abbrToState';
 
 import SkiInfo from './components/SkiInfo/SkiInfo';
 import BeerInfo from './components/BeerInfo/BeerInfo';
@@ -28,15 +31,11 @@ class App extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  handleInput(event) {
-    this.setState({ townAndState: event.target.value });
-  }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleAutoComplete(townAndState) {
 
     //getting skiInfo
-    axios.get(`https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${this.state.townAndState}&num_of_days=7&format=json`)
+    axios.get(`https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&num_of_days=7&format=json`)
       .then(response => {
         this.setState({ skiInfo: response.data })
         console.log(this.state.skiInfo, 'wtf')
@@ -45,43 +44,46 @@ class App extends Component {
         console.log(error)
       })
 
-    //modifying input to retrieve beer data
-    let splitTownAndState = this.state.townAndState.split(',');
-    let town = splitTownAndState[0];
-    town = town.split(' ');
-    let capitalizedTown = [];
-    for (let i = 0; i < town.length; i++) {
-      capitalizedTown.push(this.capitalizeFirstLetter(town[i]));
-    }
-    capitalizedTown = capitalizedTown.join(' ');
 
-    let state = splitTownAndState[1].trim();
-    let capitalizedState = this.capitalizeFirstLetter(state);
-    let townBreweryInfo = [];
-    let stateBreweryInfo = [];
-    
-    //getting beerInfo
-    axios.get(`https://api.openbrewerydb.org/breweries?by_state=${capitalizedState}&page=1&per_page=50&by_type=micro`)
-    .then(response => {
-      this.setState({ stateName: capitalizedState });
-      this.setState({ townName: capitalizedTown }); 
-      //filtering for breweries in searched town
-      for (let i = 0; i < response.data.length; i++) {
-        if(response.data[i].city === capitalizedTown) {
-          // console.log(response.data[i], 'local brew name')
-          townBreweryInfo.push(response.data[i])
-        } else {
-          stateBreweryInfo.push(response.data[i])
-        }
+      let splitTownAndState = townAndState.split(',');
+      let town = splitTownAndState[0];
+      town = town.split(' ');
+      let capitalizedTown = [];
+      for (let i = 0; i < town.length; i++) {
+        capitalizedTown.push(this.capitalizeFirstLetter(town[i]));
       }
-      this.setState({ townBeerInfo: townBreweryInfo });
-      this.setState({ stateBeerInfo: stateBreweryInfo });
-      // console.log(this.state.stateBeerInfo, 'state beer');
-    })
-    .catch(error => {
-      console.log(error)
-    });
-
+      capitalizedTown = capitalizedTown.join(' ');
+      
+  
+      let state = splitTownAndState[1].trim();
+      if(state.length > 2) { //for if there is zip attached
+        state = state[0] + state[1];
+      }
+      let capitalizedState = this.capitalizeFirstLetter(state);
+      let townBreweryInfo = [];
+      let stateBreweryInfo = [];
+      
+      //getting beerInfo
+      axios.get(`https://api.openbrewerydb.org/breweries?by_state=${capitalizedState}&page=1&per_page=50&by_type=micro`)
+      .then(response => {
+        this.setState({ stateName: capitalizedState });
+        this.setState({ townName: capitalizedTown }); 
+        //filtering for breweries in searched town
+        for (let i = 0; i < response.data.length; i++) {
+          if(response.data[i].city === capitalizedTown) {
+            // console.log(response.data[i], 'local brew name')
+            townBreweryInfo.push(response.data[i])
+          } else {
+            stateBreweryInfo.push(response.data[i])
+          }
+        }
+        this.setState({ townBeerInfo: townBreweryInfo });
+        this.setState({ stateBeerInfo: stateBreweryInfo });
+        // console.log(this.state.stateBeerInfo, 'state beer');
+      })
+      .catch(error => {
+        console.log(error)
+      });
   }
 
 
@@ -100,25 +102,26 @@ class App extends Component {
           </Container>
         </Jumbotron>
 
+
         <Container fluid className="search">
 
           <Row>
             <Col className="search-container">
-              <Form onSubmit={(event) => this.handleSubmit(event)}>
+             
+              <Form >
               <FormGroup>
                 <Label for="exampleSearch">Search By Town Of Resort</Label>
-                <InputGroup>
-                  <Input 
-                    type="search" 
-                    name="search" 
-                    id="exampleSearch" 
-                    placeholder="Example: Vail, Colorado"
-                    onChange={(event) => this.handleInput(event)} />
-
-                  <InputGroupAddon addonType="append" onClick={(event) => this.handleSubmit(event)}>
-                      <Button style={{transform: 'none', backgroundColor: 'grey'}}>Search</Button>
-                  </InputGroupAddon>
-                </InputGroup>
+                
+                <Autocomplete
+                className="auto-complete"
+                onPlaceSelected={place => {
+                  this.setState({townAndState: place.formatted_address})
+                  console.log(this.state.townAndState, 'lol');
+                  this.handleAutoComplete(this.state.townAndState)
+                }}
+                types={["(regions)"]}
+                componentRestrictions={{ country: "us" }}
+              />
               </FormGroup>
               </Form>
             </Col>

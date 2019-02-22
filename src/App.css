@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro|Patua+One');
 
 
 html, body {
@@ -31,6 +30,16 @@ p {
 
 .search-container {
   padding-bottom: 1rem;
+}
+
+.auto-complete {
+  
+  width: 90%;
+  margin-right: 0;
+  padding: .7rem;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  
 }
 
 .place-holder {
