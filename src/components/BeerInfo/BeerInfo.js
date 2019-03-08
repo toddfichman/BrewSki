@@ -44,13 +44,15 @@ export default class BeerInfo extends Component {
       }
 
     if(this.props.stateBeerData.length !== 0) {
+      // console.log(this.props.stateBeerData, 'BEER INFO')
       stateDisplay = (
         <ListGroupItem>
 
-          <ListGroupItemHeading>Breweries in State</ListGroupItemHeading>
+          <ListGroupItemHeading>Other Breweries in {this.props.stateName}</ListGroupItemHeading>
 
           <ListGroup flush>
             {this.props.stateBeerData.map((stateBrewery) => (
+              
               <BreweryInfo 
               name={stateBrewery.name}
               key={stateBrewery.id}

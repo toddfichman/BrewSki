@@ -26,7 +26,7 @@ export default class BreweryInfo extends Component {
                 <span role="img" aria-label="phone">📞</span> {this.props.phone ? <NumberFormat value={this.props.phone} format="+1 (###) ###-####" displayType={'text'} /> : 'No number provided'} 
               </CardText>
               <CardText>
-                <span role="img" aria-label="computer">🖥</span> {this.props.website ? <Linkify >{this.props.website}</Linkify> : 'No website provided'}
+                <span role="img" aria-label="computer">🖥</span> {this.props.website ? <Linkify properties={{target: '_blank'}}>{this.props.website}</Linkify> : 'No website provided'}
               </CardText>
             </Card>
           </Collapse>
