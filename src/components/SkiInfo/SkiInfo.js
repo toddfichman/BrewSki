@@ -6,9 +6,11 @@ import HourlySkiInfo from './HourlySkiInfo/HourlySkiInfo';
 
 
 export default class SkiInfo extends Component {
+  
 
   render() {
 
+    console.log(this.props.skiData, 'SKIDATA')
     
     let display = (
       <h6 className="place-holder">

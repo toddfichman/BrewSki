@@ -20,7 +20,7 @@ export default class BreweryInfo extends Component {
           <Collapse isOpen={this.state.collapse} >
             <Card style={{border: 'none'}}>
               <CardText>
-                <span role="img" aria-label="pin">📍</span> {this.props.street ? this.props.street+',' : null} {this.props.town ? this.props.town+',' : null} {this.props.state}
+                <span role="img" aria-label="pin">📍</span> <a href={`http://maps.google.com/?q=${this.props.name}`} target="_blank" rel="noopener noreferrer">{this.props.street ? this.props.street+',' : null} {this.props.town ? this.props.town+',' : null} {this.props.state}</a>
               </CardText>
               <CardText>
                 <span role="img" aria-label="phone">📞</span> {this.props.phone ? <NumberFormat value={this.props.phone} format="+1 (###) ###-####" displayType={'text'} /> : 'No number provided'} 

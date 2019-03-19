@@ -20,12 +20,14 @@ p {
 
 .jumbotron {
   background-image: url('./assets/altitude-cable-car-clouds-919931.jpg');
+  height: 45vh;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   color: #757575;
   margin-top: -2rem;
   font-family: 'Patua One', cursive;
+
 }
 
 .search-container {

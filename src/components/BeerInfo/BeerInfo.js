@@ -48,7 +48,7 @@ export default class BeerInfo extends Component {
       stateDisplay = (
         <ListGroupItem>
 
-          <ListGroupItemHeading>Other Breweries in {this.props.stateName}</ListGroupItemHeading>
+          <ListGroupItemHeading>Other Breweries Nearby</ListGroupItemHeading>
 
           <ListGroup flush>
             {this.props.stateBeerData.map((stateBrewery) => (
