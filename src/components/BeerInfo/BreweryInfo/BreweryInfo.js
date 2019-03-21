@@ -16,7 +16,7 @@ export default class BreweryInfo extends Component {
   render() {
     return (
       <ListGroupItem >
-        <Button color="white" onClick={() => this.toggle()} style={{ marginBottom: '1rem', padding: '0', color: 'gray', fontWeight: '700' }}>{this.props.name}{this.state.collapse ? "  " + "-" : " " + "+"}</Button>
+        <Button color="white" onClick={() => this.toggle()} style={{ marginBottom: '1rem', padding: '0', color: 'gray', fontWeight: '700', width: '100%' }}>{this.props.name}{this.state.collapse ? "  " + "-" : " " + "+"}</Button>
           <Collapse isOpen={this.state.collapse} >
             <Card style={{border: 'none'}}>
               <CardText>

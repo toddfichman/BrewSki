@@ -12,6 +12,7 @@ import {
 import Autocomplete from "react-google-autocomplete";
 
 import { abbrState } from "./helpers/abbrToState";
+import { chunkify } from './helpers/chunkify';
 
 import SkiInfo from "./components/SkiInfo/SkiInfo";
 import BeerInfo from "./components/BeerInfo/BeerInfo";
@@ -51,90 +52,9 @@ class App extends Component {
     });
   }
 
-  // fetchDistanceData() {
-  //   let origin = this.state.townName + "," + this.state.stateName;
-  //   let stateBreweryInfo = this.state.stateBeerInfo
-  //       //creates array of townnames and state
-  //       let destinations = this.state.stateBeerInfo.map(brewery => {
-  //         return brewery.city + ', ' + brewery.state
-  //       })
-        
-  //       //Can only handle 25 destinations per
-  //         //might need to call multiple times one after another
-  //       var service = new google.maps.DistanceMatrixService();
-  //       service.getDistanceMatrix(
-  //         {
-  //           origins: [origin],
-  //           destinations: destinations,
-  //           travelMode: "DRIVING",
-  //           drivingOptions: {
-  //             departureTime: new Date(Date.now()),  
-  //             trafficModel: 'optimistic'
-  //           },
-  //         }, callback.bind(this));
-
-  //         function callback(response, status) {
-  //           let distances = response.rows[0].elements.map(town => {
-  //             return town.distance.value
-  //           })
-  //           console.log(distances , 'QQQQQQQQQQQ')
-  //           let counter = -1;
-  //           stateBreweryInfo = stateBreweryInfo.map(brewery => {
-  //             counter++
-  //             return {
-  //               ...brewery,
-  //               distance: distances[counter]
-  //             }
-  //           })
-            
-  //           this.sortByKey(stateBreweryInfo, 'distance')
-  //           this.setState({ nearbyBeerInfo: stateBreweryInfo, isLoading: false });
-  //           console.log(this.state.nearbyBeerInfo, 'FINAL RESULT')
-  //         }
-  // }
-
-  chunkify(a, n, balanced) {
-    
-    if (n < 2)
-        return [a];
-
-    var len = a.length,
-            out = [],
-            i = 0,
-            size;
-
-    if (len % n === 0) {
-        size = Math.floor(len / n);
-        while (i < len) {
-            out.push(a.slice(i, i += size));
-        }
-    }
-
-    else if (balanced) {
-        while (i < len) {
-            size = Math.ceil((len - i) / n--);
-            out.push(a.slice(i, i += size));
-        }
-    }
-
-    else {
-
-        n--;
-        size = Math.floor(len / n);
-        if (len % size === 0)
-            size--;
-        while (i < size * n) {
-            out.push(a.slice(i, i += size));
-        }
-        out.push(a.slice(size * n));
-
-    }
-
-    return out;
-}
-
   handleAutoComplete(townAndState) {
     this.setState({isLoading: true});
+    console.log(townAndState, 'TS')
     //getting skiInfo
     axios
       .get(
@@ -188,7 +108,7 @@ class App extends Component {
         this.setState({ townBeerInfo: townBreweryInfo });
 
 
-        let splitArray = this.chunkify(stateBreweryInfo, 2, true)
+        let splitArray = chunkify(stateBreweryInfo, 2, true)
         // console.log(splitArray, 'splitArray ')
         let stateBreweryInfo1 = splitArray[0];
         let stateBreweryInfo2 = splitArray[1];
@@ -348,8 +268,11 @@ class App extends Component {
                   <Autocomplete
                     className="auto-complete"
                     onPlaceSelected={place => {
+                      if(place.address_components.length < 3) {
+                        return alert('Please enter in format: Town, State')
+                      }
                       this.setState({ townAndState: place.formatted_address });
-                      // console.log(this.state.townAndState, "lol");
+                      console.log(place, "lol");
                       this.handleAutoComplete(this.state.townAndState);
                     }}
                     types={["(regions)"]}

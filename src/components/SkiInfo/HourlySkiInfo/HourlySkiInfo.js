@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { ListGroupItem, ListGroup, ListGroupItemText, Collapse, CardText, Card, Button  } from 'reactstrap';
+import { ListGroupItem, ListGroup, ListGroupItemText, Collapse, Row, Col, Card, Button  } from 'reactstrap';
 import Moment from 'react-moment';
+
+import './HourlySkiInfo.css'
 
 export default class HourlySkiInfo extends Component {
 
@@ -12,12 +14,7 @@ export default class HourlySkiInfo extends Component {
     this.setState({ collapse: !this.state.collapse });
   }
 
-  addLetter(date) {
-    return typeof(date);
-  }
-
   render() {
-    let day = this.props.day
     console.log(this.props.day, 'hourly day')
 
     //PASSING DOWN EACH DAY INDIVDUALY
@@ -33,10 +30,14 @@ export default class HourlySkiInfo extends Component {
         <Collapse isOpen={this.state.collapse} >
           <Card style={{border: 'none'}}>
             {/* <CardText> */}
+            <Row>
+              <Col>Time</Col> <Col xs={6} className="hourly-temp">Temperature </Col><Col>PIC</Col>
+            </Row>
               {this.props.day.hourly.map(hour => (
-                <div key={hour.time}>
-                  <Moment parse="hmm" format="hh:mm A">{hour.time} Hey </Moment><span>{hour.bottom[0].tempF}</span>
-                </div>
+                <Row key={hour.time} className="hourly-container">
+                  
+                  <Col><Moment parse="hmm" format="hh:mm A">{hour.time}</Moment></Col> <Col xs={6} className="hourly-temp">{hour.bottom[0].tempF} °F ---> <span>{hour.bottom[0].weatherDesc[0].value}</span> </Col> <Col><img src={hour.bottom[0].weatherIconUrl[0].value} alt="WEATHER"/></Col>
+                </Row>
               ))}
             {/* </CardText> */}
           </Card>
