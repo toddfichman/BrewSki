@@ -16,11 +16,15 @@ export default class BreweryInfo extends Component {
   }
 
   render() {
+    console.log(this.props.distance, 'DISTANCE')
     return (
       <ListGroupItem >
         <Button className="dropdown-btn" onClick={() => this.toggle()} >{this.props.name}{this.state.collapse ?  "-" :  "+"}</Button>
           <Collapse isOpen={this.state.collapse} >
             <Card style={{border: 'none'}}>
+            <CardText className="brewery-distance">
+                {this.props.distance ?<span> {(this.props.distance * 0.000621371).toFixed(1) + ' Miles Away' }</span>: null}
+              </CardText>
               <CardText>
                 <span role="img" aria-label="pin">📍</span> <a href={`http://maps.google.com/?q=${this.props.name}`} target="_blank" rel="noopener noreferrer">{this.props.street ? this.props.street+',' : null} {this.props.town ? this.props.town+',' : null} {this.props.state}</a>
               </CardText>

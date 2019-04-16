@@ -6,6 +6,9 @@
   margin-bottom: .5rem;
 }
 
+.brewery-distance {
+  text-align: center;
+}
 
 .dropdown-btn {
   margin-bottom: 1rem;
@@ -14,6 +17,7 @@
   font-weight: 700;
   width: 100%;
   background-color: #92C0DB !important;
+  
   border: none !important;
   height: 2.5rem;
 }

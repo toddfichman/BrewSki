@@ -25,9 +25,9 @@ export default class SkiInfo extends Component {
           {this.props.skiData.data.weather.map((day) => (
             <ListGroupItem key={day.date}>                                          
               <ListGroupItemHeading><Moment format="MM/DD/YY">{day.date}</Moment> ⏤ <Moment format="dddd">{day.date}</Moment></ListGroupItemHeading>
-              {/* <ListGroupItemHeading>{day.hourly[3].bottom[0].weatherDesc[0].value === day.hourly[4].bottom[0].weatherDesc[0].value ? day.hourly[3].bottom[0].weatherDesc[0].value : day.hourly[3].bottom[0].weatherDesc[0].value + ' / ' + day.hourly[4].bottom[0].weatherDesc[0].value }</ListGroupItemHeading> */}
+              <ListGroupItemHeading>{day.hourly[3].bottom[0].weatherDesc[0].value === day.hourly[4].bottom[0].weatherDesc[0].value ? day.hourly[3].bottom[0].weatherDesc[0].value : day.hourly[3].bottom[0].weatherDesc[0].value + ' / ' + day.hourly[4].bottom[0].weatherDesc[0].value }</ListGroupItemHeading>
             <ListGroupItemText>
-              High ⏤ Low ➜ <span style={{fontWeight: '700'}}> {day.bottom[0].maxtempF}°F ⏤ {day.bottom[0].mintempF}°F </span>
+              Low ⏤ High ➜ <span style={{fontWeight: '700'}}> {day.bottom[0].mintempF}°F ⏤ {day.bottom[0].maxtempF}°F </span>
             </ListGroupItemText>
             <ListGroupItemText>
               Chance Of Snow ➜ <span style={{fontWeight: '700'}}>{day.chanceofsnow}% </span>

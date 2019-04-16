@@ -154,20 +154,30 @@ class App extends Component {
               }
             })
             
-            // console.log(this.state.nearbyBeerInfo, '1/2 FINAL RESULT')
+            console.log(stateBreweryInfo1, '1/2 FINAL RESULT')
+            service.getDistanceMatrix(
+              {
+                origins: [origin],
+                destinations: destinations2,
+                travelMode: "DRIVING",
+                drivingOptions: {
+                  departureTime: new Date(Date.now()),  
+                  trafficModel: 'optimistic'
+                },
+              },callback2.bind(this));
           }
 
           //getting distance data with 2nd call
-          service.getDistanceMatrix(
-          {
-            origins: [origin],
-            destinations: destinations2,
-            travelMode: "DRIVING",
-            drivingOptions: {
-              departureTime: new Date(Date.now()),  
-              trafficModel: 'optimistic'
-            },
-          },callback2.bind(this));
+          // service.getDistanceMatrix(
+          // {
+          //   origins: [origin],
+          //   destinations: destinations2,
+          //   travelMode: "DRIVING",
+          //   drivingOptions: {
+          //     departureTime: new Date(Date.now()),  
+          //     trafficModel: 'optimistic'
+          //   },
+          // },callback2.bind(this));
 
           function callback2(response, status) {
             let distances = response.rows[0].elements.map(town => {
@@ -183,6 +193,7 @@ class App extends Component {
               }
             })
             let allstateBreweryInfo = stateBreweryInfo1.concat(stateBreweryInfo2)
+            console.log(allstateBreweryInfo, 'all distances', stateBreweryInfo2)
             
             this.sortByKey(allstateBreweryInfo, 'distance')
             this.setState({ nearbyBeerInfo: allstateBreweryInfo, isLoading: false });
@@ -252,7 +263,7 @@ class App extends Component {
               className="lead"
               style={{ color: "#757575", fontWeight: "normal" }}
             >
-              Ski And Sip Local
+              Ski And Sip Locally
             </p>
           </Container>
         </Jumbotron>
@@ -271,7 +282,7 @@ class App extends Component {
                         return alert('Please enter in format: Town, State')
                       }
                       this.setState({ townAndState: place.formatted_address });
-                      console.log(place, "lol");
+                      // console.log(place, "lol");
                       this.handleAutoComplete(this.state.townAndState);
                     }}
                     types={["(regions)"]}
