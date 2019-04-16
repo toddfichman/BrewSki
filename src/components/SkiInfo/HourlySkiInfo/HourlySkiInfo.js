@@ -56,6 +56,7 @@ export default class HourlySkiInfo extends Component {
         }
       ]
     };
+    
 
     let graph = (
       <div>
@@ -68,7 +69,7 @@ export default class HourlySkiInfo extends Component {
             title: {
               display: true,
               text: "Temperature Breakdown",
-              fontSize: 25
+              fontSize: 20
             },
             legend: {
               display: false
@@ -91,8 +92,11 @@ export default class HourlySkiInfo extends Component {
               yAxes: [{
                 display: true,
                 ticks: {
-                  suggestedMin: 0,
-                  suggestedMax: 65,
+                  suggestedMin: Math.min.apply(this, hourlyTemp) - 5,
+                  suggestedMax: Math.max.apply(this, hourlyTemp) + 5,
+                  callback: function(value, index, values) {
+                    return  value + " °F";
+                }
                 }
               }]
             }
