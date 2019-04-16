@@ -115,20 +115,26 @@ export default class BeerInfo extends Component {
       );
     });
 
+    let pages;
+
+    if (stateBeerData.length !== 0) {
+      pages = (
+        <ul className="page-numbers" >
+          <Pagination>
+            {renderPageNumbers}
+          </Pagination>
+        </ul>
+      )
+    }
+
+    
+
     return (
       <ListGroup flush>
         {localDisplay}
         {stateDisplay}
         <ListGroupItem style={{border: 'none'}}>
-
-          <ul className="page-numbers" >
-          
-              <Pagination>
-                {renderPageNumbers}
-              </Pagination>
-
-            
-          </ul>
+          {pages}
         </ListGroupItem>
       </ListGroup>
     )

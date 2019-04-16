@@ -54,7 +54,6 @@ class App extends Component {
 
   handleAutoComplete(townAndState) {
     this.setState({isLoading: true});
-    console.log(townAndState, 'TS')
     //getting skiInfo
     axios
       .get(
@@ -253,7 +252,7 @@ class App extends Component {
               className="lead"
               style={{ color: "#757575", fontWeight: "normal" }}
             >
-              Ski And Drink Local
+              Ski And Sip Local
             </p>
           </Container>
         </Jumbotron>

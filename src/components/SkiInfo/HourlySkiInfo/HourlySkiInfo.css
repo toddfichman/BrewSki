@@ -3,5 +3,27 @@
 } */
 
 .hourly-container {
+  margin-bottom: .5rem;
+}
+
+
+.dropdown-btn {
   margin-bottom: 1rem;
+  padding: 0;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  background-color: #92C0DB !important;
+  border: none !important;
+  height: 2.5rem;
+}
+
+
+.dropdown-btn:focus {
+  box-shadow: none !important;
+}
+
+.weather-img {
+  border-radius: 50%;
+  height: 50%
 }
