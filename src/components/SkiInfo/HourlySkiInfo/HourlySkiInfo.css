@@ -31,3 +31,8 @@
   border-radius: 50%;
   height: 50%
 }
+
+.chart-container {
+  padding: 0;
+  display: inline;
+}

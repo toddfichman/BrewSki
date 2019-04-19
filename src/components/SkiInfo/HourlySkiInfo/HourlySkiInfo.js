@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ListGroupItem, Collapse, Row, Col, Card, Button } from "reactstrap";
-import Moment from "react-moment";
+// import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
 
 import "./HourlySkiInfo.css";
@@ -61,7 +61,7 @@ export default class HourlySkiInfo extends Component {
     let graph = (
       <div>
         <Line
-          height={200}
+          height={175}
         
           data={chartData}
           options={{
@@ -117,7 +117,7 @@ export default class HourlySkiInfo extends Component {
         <Collapse isOpen={this.state.collapse}>
           <Card style={{ border: "none", color: "#757575" }}>
             <Row>
-              <Col>{graph}</Col>
+              <Col className="chart-container">{graph}</Col>
             </Row>
             {/* <Row>
               <Col>Time</Col>{" "}
