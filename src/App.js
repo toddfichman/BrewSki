@@ -273,7 +273,7 @@ class App extends Component {
             <Col className="search-container">
               <Form>
                 <FormGroup>
-                  <Label for="exampleSearch">Search By Town Of Resort</Label>
+                  <Label for="exampleSearch" style={{fontSize: '3rem'}}>Search By Town Of Resort</Label>
 
                   <Autocomplete
                     className="auto-complete"
