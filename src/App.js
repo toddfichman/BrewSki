@@ -261,13 +261,13 @@ class App extends Component {
 
     return (
       <div className="app">
-      <Navbar color="light" light expand="md">
+      {/* <Navbar color="light" light expand="md">
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink style={{fontWeight: 'bold'}}>Login To Save</NavLink>
           </NavItem>
         </Nav>
-      </Navbar>
+      </Navbar> */}
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="display-3">BrewSki</h1>
@@ -312,7 +312,7 @@ class App extends Component {
             </Col>
           </Row>
         </Container>
-        {this.state.townAndState ? <button>SAVE</button> : null}
+        {/* {this.state.townAndState ? <button>SAVE</button> : null} */}
 
         {content}
 
