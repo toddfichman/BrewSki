@@ -7,7 +7,11 @@ import {
   Form,
   FormGroup,
   Label,
-  CardHeader
+  CardHeader,
+  Navbar,
+  NavItem,
+  NavLink,
+  Nav
 } from "reactstrap";
 import Autocomplete from "react-google-autocomplete";
 
@@ -22,7 +26,7 @@ import "./App.css";
 
 import axios from "axios";
 
-const google = window.google
+const google = window.google;
 
 require("dotenv").config();
 
@@ -38,7 +42,8 @@ class App extends Component {
     townBeerInfo: [],
     stateBeerInfo: [],
     nearbyBeerInfo: [],
-    isLoading: false
+    isLoading: false,
+    loggedIn: false
   };
 
   capitalizeFirstLetter(string) {
@@ -154,7 +159,7 @@ class App extends Component {
               }
             })
             
-            console.log(stateBreweryInfo1, '1/2 FINAL RESULT')
+            // console.log(stateBreweryInfo1, '1/2 FINAL RESULT')
             service.getDistanceMatrix(
               {
                 origins: [origin],
@@ -183,7 +188,7 @@ class App extends Component {
             let distances = response.rows[0].elements.map(town => {
               return town.distance.value
             })
-            // console.log(distances , 'QQQQQQQQQQQ')
+            
             let counter = -1;
             stateBreweryInfo2 = stateBreweryInfo2.map(brewery => {
               counter++
@@ -193,7 +198,7 @@ class App extends Component {
               }
             })
             let allstateBreweryInfo = stateBreweryInfo1.concat(stateBreweryInfo2)
-            console.log(allstateBreweryInfo, 'all distances', stateBreweryInfo2)
+            // console.log(allstateBreweryInfo, 'all distances', stateBreweryInfo2)
             
             this.sortByKey(allstateBreweryInfo, 'distance')
             this.setState({ nearbyBeerInfo: allstateBreweryInfo, isLoading: false });
@@ -256,6 +261,13 @@ class App extends Component {
 
     return (
       <div className="app">
+      <Navbar color="light" light expand="md">
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink style={{fontWeight: 'bold'}}>Login To Save</NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="display-3">BrewSki</h1>
@@ -276,23 +288,31 @@ class App extends Component {
                   <Label for="exampleSearch" style={{fontSize: '3rem'}}>Search By Town Of Resort</Label>
 
                   <Autocomplete
+                    onSubmit={place => {
+                      this.setState({ townAndState: place.formatted_address });
+                      
+                      this.handleAutoComplete(this.state.townAndState);
+                    }}
                     className="auto-complete"
                     onPlaceSelected={place => {
                       if(place.address_components.length < 3) {
                         return alert('Please enter in format: Town, State')
                       }
                       this.setState({ townAndState: place.formatted_address });
-                      // console.log(place, "lol");
+                      
                       this.handleAutoComplete(this.state.townAndState);
                     }}
                     types={["(regions)"]}
                     componentRestrictions={{ country: "us" }}
+                    
                   />
+                  
                 </FormGroup>
               </Form>
             </Col>
           </Row>
         </Container>
+        {this.state.townAndState ? <button>SAVE</button> : null}
 
         {content}
 

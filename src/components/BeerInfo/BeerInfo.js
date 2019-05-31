@@ -32,10 +32,10 @@ export default class BeerInfo extends Component {
 
     const indexOfLastTodo = currentPage * breweriesPerPage;
     const indexOfFirstTodo = indexOfLastTodo - breweriesPerPage;
-    console.log(stateBeerData, 'stateBeerData')
+    // console.log(stateBeerData, 'stateBeerData')
     const currentBreweries = stateBeerData.slice(indexOfFirstTodo, indexOfLastTodo);
 
-    console.log(stateBeerData, 'it worked!')
+    // console.log(stateBeerData, 'it worked!')
 
     let localDisplay = (
       <h6 className="place-holder">
@@ -75,7 +75,7 @@ export default class BeerInfo extends Component {
       }
 
     if(stateBeerData.length !== 0) {
-      console.log(currentBreweries, 'ccurent', stateBeerData, 'BEER INFO')
+      // console.log(currentBreweries, 'ccurent', stateBeerData, 'BEER INFO')
       stateDisplay = (
         <ListGroupItem>
 
