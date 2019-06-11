@@ -16,7 +16,6 @@ export default class BreweryInfo extends Component {
   }
 
   render() {
-    console.log(this.props.distance, 'DISTANCE')
     return (
       <ListGroupItem >
         <Button className="dropdown-btn" onClick={() => this.toggle()} >{this.props.name}{this.state.collapse ?  "-" :  "+"}</Button>

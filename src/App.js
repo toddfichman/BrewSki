@@ -43,7 +43,8 @@ class App extends Component {
     stateBeerInfo: [],
     nearbyBeerInfo: [],
     isLoading: false,
-    loggedIn: false
+    loggedIn: false,
+    isOffSeason: false,
   };
 
   capitalizeFirstLetter(string) {
@@ -57,15 +58,29 @@ class App extends Component {
     });
   }
 
+  // _handleKeyDown = (e) => {
+  //   e.preventDefault();
+  //   if (e.key === 'Enter') {
+  //     console.log('do validate');
+  //   }
+  // }
+
   handleAutoComplete(townAndState) {
+    
     this.setState({isLoading: true});
     //getting skiInfo
     axios
       .get(
-        `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&num_of_days=7&format=json`
+        `http://api.worldweatheronline.com/premium/v1/ski.ashx?key=1152a88bd8bc4fe5816131932190406&q=${townAndState}&format=json&num_of_days=5`
+        // `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&num_of_days=5&format=json`
       )
       .then(response => {
         this.setState({ skiInfo: response.data });
+        if (response.data.data.weather.length === 1) {
+          this.setState({isOffSeason: true})
+          
+        }
+        
         // console.log(this.state.skiInfo, "wtf");
       })
       .catch(error => {
@@ -224,7 +239,7 @@ class App extends Component {
 
     let beerHeader = this.state.townName ? (
       <h4>
-        Local Beer Report For {this.state.townName}, {this.state.stateName}
+        Local Brewery Report For {this.state.townName}, {this.state.stateName}
       </h4>
     ) : (
       <h4>Local Beer Report For...</h4>
@@ -240,7 +255,7 @@ class App extends Component {
               <CardHeader style={{ backgroundColor: "#FFF" }}>
                 {skiHeader}
               </CardHeader>
-              <SkiInfo skiData={this.state.skiInfo} />
+              <SkiInfo skiData={this.state.skiInfo} isOffSeason={this.state.isOffSeason}/>
             </Col>
 
             <Col xs={12} sm={6}>
@@ -284,17 +299,16 @@ class App extends Component {
           <Row>
             <Col className="search-container">
               <Form>
-                <FormGroup>
+                <FormGroup autoFocus >
+                
                   <Label for="exampleSearch" style={{fontSize: '3rem'}}>Search By Town Of Resort</Label>
-
+                  
                   <Autocomplete
-                    onSubmit={place => {
-                      this.setState({ townAndState: place.formatted_address });
-                      
-                      this.handleAutoComplete(this.state.townAndState);
-                    }}
+                    
+                    
                     className="auto-complete"
-                    onPlaceSelected={place => {
+                    onPlaceSelected={(place) => {
+                      
                       if(place.address_components.length < 3) {
                         return alert('Please enter in format: Town, State')
                       }

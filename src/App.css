@@ -1,6 +1,5 @@
-
-
-html, body {
+html,
+body {
   height: 100%;
   position: relative;
 }
@@ -15,19 +14,18 @@ html, body {
 }
 
 p {
-  color: gray
+  color: gray;
 }
 
 .jumbotron {
-  background-image: url('./assets/altitude-cable-car-clouds-919931.jpg');
+  background-image: url("./assets/altitude-cable-car-clouds-919931.jpg");
   height: 45vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: #757575;
   margin-top: -2rem;
-  font-family: 'Patua One', cursive;
-
+  font-family: "Patua One", cursive;
 }
 
 .search-container {
@@ -35,13 +33,11 @@ p {
 }
 
 .auto-complete {
-  
   width: 90%;
   margin-right: 0;
-  padding: .7rem;
+  padding: 0.7rem;
   border: 1px solid #757575;
   border-radius: 5px;
-  
 }
 
 .place-holder {
@@ -49,43 +45,44 @@ p {
   font-weight: normal;
   margin-top: 5px;
   margin-left: 1.25rem;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
-.search, .ski-and-beer {
+.search,
+.ski-and-beer {
   height: 100%;
 }
 
 .form-control {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 .col-12 {
   max-width: 100%;
   padding-bottom: 1rem;
-  color: #92C0DB
+  color: #92c0db;
 }
 
 .card-header {
   background-color: white;
-  font-family: 'Patua One', cursive;
+  font-family: "Patua One", cursive;
 }
 
 .list-group-item-heading {
-  font-family: 'Patua One', cursive;
+  font-family: "Patua One", cursive;
 }
 
 .list-group-item-text {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
-  color: #92C0DB;
+  color: #92c0db;
   font-size: x-large;
   font-weight: 500;
-  font-family: 'Patua One', cursive;
+  font-family: "Patua One", cursive;
 }
 
 list-group-item {
@@ -99,8 +96,8 @@ list-group-item {
 
 .btn {
   background-color: #fff;
-  font-family: 'Maven Pro', sans-serif;
-  transition: all 2s
+  font-family: "Maven Pro", sans-serif;
+  transition: all 2s;
 }
 
 .btn:hover {
@@ -112,7 +109,15 @@ list-group-item {
 }
 
 .card-text {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
-
+.offseason-warning {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  background-color: lightslategray;
+  padding: 2rem 0.5rem;
+  border-radius: 10px;
+  font-family: "Patua One", cursive;
+}

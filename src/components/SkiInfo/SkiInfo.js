@@ -6,11 +6,10 @@ import HourlySkiInfo from './HourlySkiInfo/HourlySkiInfo';
 
 
 export default class SkiInfo extends Component {
-  
+
 
   render() {
 
-    // console.log(this.props.skiData, 'SKIDATA')
     
     let display = (
       <h6 className="place-holder">
@@ -51,7 +50,7 @@ export default class SkiInfo extends Component {
             </ListGroupItemText> */}
             </ListGroupItem>
           ))}
-
+          {this.props.isOffSeason ? <div className="offseason-warning">Only 1 Day Forcast Available During Offseason.</div> : null}
         </ListGroup>
       )
     } 
@@ -59,6 +58,7 @@ export default class SkiInfo extends Component {
     return (
       <div>
         {display}
+        
       </div>
     )
   }
