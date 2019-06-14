@@ -22,4 +22,36 @@
   padding: 0;
   background-color: #92C0DB;
   height: 4rem;
+  border-radius: 15px;
+}
+
+.brewery-list-group {
+  background-color: transparent !important;
+  /* margin-top: 4rem; */
+  height: 100%;
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.brewery-header {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.brewery-card {
+  padding: 2rem !important;
+}
+
+.brewery-distance {
+  text-align: center;
+}
+
+.dropdown-btn {
+  padding: 1rem !important;
+}
+
+.page-container {
+  background-color: #F1FBFC;
 }

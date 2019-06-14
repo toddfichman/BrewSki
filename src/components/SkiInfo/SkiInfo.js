@@ -22,7 +22,7 @@ export default class SkiInfo extends Component {
         <ListGroup flush>
 
           {this.props.skiData.data.weather.map((day) => (
-            <ListGroupItem key={day.date}>                                          
+            <div className="list-item" key={day.date}>                                          
               <ListGroupItemHeading><Moment format="MM/DD/YY">{day.date}</Moment> ⏤ <Moment format="dddd">{day.date}</Moment></ListGroupItemHeading>
               <ListGroupItemHeading>{day.hourly[3].bottom[0].weatherDesc[0].value === day.hourly[4].bottom[0].weatherDesc[0].value ? day.hourly[3].bottom[0].weatherDesc[0].value : day.hourly[3].bottom[0].weatherDesc[0].value + ' / ' + day.hourly[4].bottom[0].weatherDesc[0].value }</ListGroupItemHeading>
             <ListGroupItemText>
@@ -48,7 +48,7 @@ export default class SkiInfo extends Component {
                 hour.bottom[0].tempF
               ))}
             </ListGroupItemText> */}
-            </ListGroupItem>
+            </div>
           ))}
           {this.props.isOffSeason ? <div className="offseason-warning">Only 1 Day Forcast Available During Offseason.</div> : null}
         </ListGroup>

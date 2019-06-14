@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ListGroupItem, Collapse, Row, Col, Card, Button } from "reactstrap";
 // import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import "./HourlySkiInfo.css";
 
@@ -10,12 +11,16 @@ export default class HourlySkiInfo extends Component {
     collapse: false
   };
 
+  
+
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
 
   render() {
-    // console.log(this.props.day, "hourly day");
+    // const matches = useMediaQuery('(min-width:600px)');
+    // console.log(matches, "hourly day");
+    
     let hourlyTemp = [];
     let hourlyDescription = [];
     let hourlyDescriptionPics = [];
@@ -119,30 +124,7 @@ export default class HourlySkiInfo extends Component {
             <Row>
               <Col className="chart-container">{graph}</Col>
             </Row>
-            {/* <Row>
-              <Col>Time</Col>{" "}
-              <Col xs={6} className="hourly-temp">
-                Temperature{" "}
-              </Col>
-            </Row> */}
-
-            {/* {this.props.day.hourly.map(hour => (
-              <Row key={hour.time} className="hourly-container">
-                <Col>
-                  <Moment parse="hmm" format="hh:mm A">
-                    {hour.time}
-                  </Moment>
-                </Col>{" "}
-                <Col xs={6} className="hourly-temp">
-                  {hour.bottom[0].tempF} °F --->{" "}
-                  <img
-                    className="weather-img"
-                    src={hour.bottom[0].weatherIconUrl[0].value}
-                    alt="WEATHER"
-                  />{" "}
-                </Col>
-              </Row>
-            ))} */}
+            
           </Card>
         </Collapse>
       </ListGroupItem>

@@ -4,7 +4,7 @@ import Linkify from 'react-linkify';
 import NumberFormat from 'react-number-format';
 
 import '../../SkiInfo/HourlySkiInfo/HourlySkiInfo.css'
-
+import '../BeerInfo.css'
 export default class BreweryInfo extends Component {
 
   state = {
@@ -17,7 +17,7 @@ export default class BreweryInfo extends Component {
 
   render() {
     return (
-      <ListGroupItem >
+      <div className="list-item brewery-card">
         <Button className="dropdown-btn" onClick={() => this.toggle()} >{this.props.name}{this.state.collapse ?  "-" :  "+"}</Button>
           <Collapse isOpen={this.state.collapse} >
             <Card style={{border: 'none'}}>
@@ -35,7 +35,7 @@ export default class BreweryInfo extends Component {
               </CardText>
             </Card>
           </Collapse>
-      </ ListGroupItem>
+      </ div>
     )
   }
 }

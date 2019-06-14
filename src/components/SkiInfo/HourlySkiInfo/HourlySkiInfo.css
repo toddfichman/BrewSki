@@ -6,20 +6,17 @@
   margin-bottom: .5rem;
 }
 
-.brewery-distance {
-  text-align: center;
-}
 
 .dropdown-btn {
-  margin-bottom: 1rem;
-  padding: 0;
+  margin-bottom: 2rem;
+  padding: 2rem;
   color: white;
   font-weight: 700;
   width: 100%;
   background-color: #92C0DB !important;
   
   border: none !important;
-  height: 2.5rem;
+  /* height: 2.5rem; */
 }
 
 

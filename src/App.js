@@ -283,6 +283,7 @@ class App extends Component {
           </NavItem>
         </Nav>
       </Navbar> */}
+      <Container fluid className="jumbotron-search">
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="display-3">BrewSki</h1>
@@ -295,13 +296,13 @@ class App extends Component {
           </Container>
         </Jumbotron>
 
-        <Container fluid className="search">
-          <Row>
+        
+          
             <Col className="search-container">
               <Form>
                 <FormGroup autoFocus >
                 
-                  <Label for="exampleSearch" style={{fontSize: '3rem'}}>Search By Town Of Resort</Label>
+                  <Label className="search-header" for="exampleSearch" >Search By Town Of Resort</Label>
                   
                   <Autocomplete
                     
@@ -324,7 +325,7 @@ class App extends Component {
                 </FormGroup>
               </Form>
             </Col>
-          </Row>
+          
         </Container>
         {/* {this.state.townAndState ? <button>SAVE</button> : null} */}
 
