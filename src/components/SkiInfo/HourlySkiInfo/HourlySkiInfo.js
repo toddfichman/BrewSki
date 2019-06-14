@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { ListGroupItem, Collapse, Row, Col, Card, Button } from "reactstrap";
 // import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Media from 'react-media';
 
 import "./HourlySkiInfo.css";
 
 export default class HourlySkiInfo extends Component {
   state = {
-    collapse: false
+    collapse: false,
+    width: window.outerWidth
   };
 
   
@@ -18,8 +19,6 @@ export default class HourlySkiInfo extends Component {
   }
 
   render() {
-    // const matches = useMediaQuery('(min-width:600px)');
-    // console.log(matches, "hourly day");
     
     let hourlyTemp = [];
     let hourlyDescription = [];
@@ -66,7 +65,7 @@ export default class HourlySkiInfo extends Component {
     let graph = (
       <div>
         <Line
-          height={175}
+          height={window.outerWidth > 750 ? 175 : 250}
         
           data={chartData}
           options={{
