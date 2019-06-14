@@ -40,7 +40,7 @@ p {
   color: #757575;
   font-family: "Patua One", cursive;
   clip-path: polygon(0 0, 100% 1%, 100% 100%, 0 87%);
-  margin-bottom: 0 !important;
+  margin-bottom: 0 !important; 
 }
 
 @media only screen and (max-device-width: 736px) {
