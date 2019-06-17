@@ -289,7 +289,7 @@ class App extends Component {
             <h1 className="display-3">BrewSki</h1>
             <p
               className="lead"
-              style={{ color: "#757575", fontWeight: "normal" }}
+              style={{ color: "#484848", fontWeight: "normal" }}
             >
               Ski And Sip Locally
             </p>

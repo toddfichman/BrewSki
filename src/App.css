@@ -32,12 +32,13 @@ p {
 }
 
 .jumbotron {
-  background-image: url("./assets/altitude-cable-car-clouds-919931.jpg");
+  background-image: url("./assets/action-adventure-alpine-352093.jpg");
   height: 50vh;
   background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  color: #757575;
+  color: #484848;
   font-family: "Patua One", cursive;
   clip-path: polygon(0 0, 100% 1%, 100% 100%, 0 87%);
   margin-bottom: 0 !important; 
@@ -45,12 +46,13 @@ p {
 
 @media only screen and (max-device-width: 736px) {
   .jumbotron {
-    background-image: url("./assets/altitude-cable-car-clouds-919931.jpg");
+    background-image: url("./assets/action-adventure-alpine-352093.jpg");
     height: 35vh;
     background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    color: #757575;
+    color: #484848;
     font-family: "Patua One", cursive;
     clip-path: polygon(0 0, 100% 1%, 100% 100%, 0 87%);
     margin-bottom: 0 !important;
