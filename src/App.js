@@ -71,8 +71,8 @@ class App extends Component {
     //getting skiInfo
     axios
       .get(
-        `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=1152a88bd8bc4fe5816131932190406&q=${townAndState}&format=json&num_of_days=5`
-        // `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&num_of_days=5&format=json`
+        `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&format=json&num_of_days=7`
+        
       )
       .then(response => {
         this.setState({ skiInfo: response.data });
