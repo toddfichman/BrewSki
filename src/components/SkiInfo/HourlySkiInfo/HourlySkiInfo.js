@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { ListGroupItem, Collapse, Row, Col, Card, Button } from "reactstrap";
-// import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
-import Media from 'react-media';
+
 
 import "./HourlySkiInfo.css";
 
@@ -32,8 +31,8 @@ export default class HourlySkiInfo extends Component {
         this.props.day.hourly[i].bottom[0].weatherIconUrl[0].value
       );
     }
-    // console.log(hourlyTemp, hourlyDescription, hourlyDescriptionPics, "hourly");
 
+    // data for weather graph
     let chartData = {
       labels: [
         "02:00 AM",
@@ -77,7 +76,6 @@ export default class HourlySkiInfo extends Component {
             },
             legend: {
               display: false
-              // position: 'right'
             },
             tooltips: {
               callbacks: {

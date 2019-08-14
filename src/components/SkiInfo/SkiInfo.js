@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { ListGroup, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import Moment from 'react-moment';
 
 import HourlySkiInfo from './HourlySkiInfo/HourlySkiInfo';
@@ -42,12 +42,6 @@ export default class SkiInfo extends Component {
                 <HourlySkiInfo day={day}/>  
             </ListGroup>
             
-            
-            {/* <ListGroupItemText>
-              Hourly &#8681; {day.hourly.map((hour) => (
-                hour.bottom[0].tempF
-              ))}
-            </ListGroupItemText> */}
             </div>
           ))}
           {this.props.isOffSeason ? <div className="offseason-warning">Only 1 Day Forcast Available During Offseason.</div> : null}

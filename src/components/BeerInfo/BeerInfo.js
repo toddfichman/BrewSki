@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  ListGroup,
-  ListGroupItem,
-  ListGroupItemHeading,
-  Pagination
-} from "reactstrap";
+import { ListGroup, Pagination } from "reactstrap";
 import BreweryInfo from "./BreweryInfo/BreweryInfo";
 
 import "./BeerInfo.css";
@@ -17,24 +12,18 @@ export default class BeerInfo extends Component {
       breweriesPerPage: 15
     };
     this.handleClick = this.handleClick.bind(this);
-    this.newPage = React.createRef()
+    this.newPage = React.createRef();
   }
-
-  // componentDidMount() {
-  //   this.refs.state.scrollIntoView();
-  // }
 
   handleClick(event) {
     this.setState({ currentPage: Number(event.target.id) });
-    if(this.newPage.current){
-      this.newPage.current.scrollIntoView({ 
-         behavior: "smooth", 
-         block: "start"
-      })
+    if (this.newPage.current) {
+      this.newPage.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
   }
-  }
-
-  
 
   render() {
     const { currentPage, breweriesPerPage } = this.state;
@@ -42,13 +31,10 @@ export default class BeerInfo extends Component {
 
     const indexOfLastTodo = currentPage * breweriesPerPage;
     const indexOfFirstTodo = indexOfLastTodo - breweriesPerPage;
-    // console.log(stateBeerData, 'stateBeerData')
     const currentBreweries = stateBeerData.slice(
       indexOfFirstTodo,
       indexOfLastTodo
     );
-
-    // console.log(stateBeerData, 'it worked!')
 
     let localDisplay = (
       <h6 className="place-holder">Find Out What Breweries Are Local</h6>
@@ -87,10 +73,11 @@ export default class BeerInfo extends Component {
     }
 
     if (stateBeerData.length !== 0) {
-      // console.log(currentBreweries, 'ccurent', stateBeerData, 'BEER INFO')
       stateDisplay = (
-        <div  className="brewery-list-group">
-          <div ref={this.newPage} className="brewery-header">Other Breweries Nearby</div>
+        <div className="brewery-list-group">
+          <div ref={this.newPage} className="brewery-header">
+            Other Breweries Nearby
+          </div>
 
           <ListGroup flush>
             {currentBreweries.map(stateBrewery => (
@@ -125,9 +112,8 @@ export default class BeerInfo extends Component {
           className="page-number"
           key={number}
           id={number}
-          onClick={(event) => {
+          onClick={event => {
             this.handleClick(event);
-            
           }}
         >
           {number}

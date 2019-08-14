@@ -37,7 +37,8 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build",
     "server": "nodemon server.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\""
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "deploy": "firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
