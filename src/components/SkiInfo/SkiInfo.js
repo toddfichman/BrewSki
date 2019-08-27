@@ -21,18 +21,18 @@ export default class SkiInfo extends Component {
       display = (
         <ListGroup flush>
 
-          {this.props.skiData.data.weather.map((day) => (
+          {this.props.skiData.data.weather && this.props.skiData.data.weather.map((day) => (
             <div className="list-item" key={day.date}>                                          
               <ListGroupItemHeading><Moment format="MM/DD/YY">{day.date}</Moment> ⏤ <Moment format="dddd">{day.date}</Moment></ListGroupItemHeading>
-              <ListGroupItemHeading>{day.hourly[3].bottom[0].weatherDesc[0].value === day.hourly[4].bottom[0].weatherDesc[0].value ? day.hourly[3].bottom[0].weatherDesc[0].value : day.hourly[3].bottom[0].weatherDesc[0].value + ' / ' + day.hourly[4].bottom[0].weatherDesc[0].value }</ListGroupItemHeading>
+              <ListGroupItemHeading>{day.hourly[3].weatherDesc[0].value === day.hourly[4].weatherDesc[0].value ? day.hourly[3].weatherDesc[0].value : day.hourly[3].weatherDesc[0].value + ' / ' + day.hourly[4].weatherDesc[0].value }</ListGroupItemHeading>
             <ListGroupItemText>
-              Low ⏤ High ➜ <span style={{fontWeight: '700'}}> {day.bottom[0].mintempF}°F ⏤ {day.bottom[0].maxtempF}°F </span>
+              Low ⏤ High ➜ <span style={{fontWeight: '700'}}> {day.mintempF}°F ⏤ {day.maxtempF}°F </span>
             </ListGroupItemText>
             <ListGroupItemText>
-              Chance Of Snow ➜ <span style={{fontWeight: '700'}}>{day.chanceofsnow}% </span>
+              Chance Of Snow ➜ <span style={{fontWeight: '700'}}>{day.hourly[4].chanceofsnow}% </span>
             </ListGroupItemText>
             <ListGroupItemText>
-              Expected Snow Accumulation ➜ <span style={{fontWeight: '700'}}>{(day.totalSnowfall_cm * 0.393701).toFixed(1)} in.</span>
+              Expected Snow Accumulation ➜ <span style={{fontWeight: '700'}}>{(day.totalSnow_cm * 0.393701).toFixed(1)} in.</span>
             </ListGroupItemText>
             <ListGroupItemText>
               Sunrise ⏤ Sunset ➜ <span style={{fontWeight: '700'}}>{day.astronomy[0].sunrise} ⏤ {day.astronomy[0].sunset}</span>

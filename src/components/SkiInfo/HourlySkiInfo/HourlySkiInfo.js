@@ -23,12 +23,12 @@ export default class HourlySkiInfo extends Component {
     let hourlyDescription = [];
     let hourlyDescriptionPics = [];
     for (let i = 0; i < this.props.day.hourly.length; i++) {
-      hourlyTemp.push(this.props.day.hourly[i].bottom[0].tempF);
+      hourlyTemp.push(this.props.day.hourly[i].tempF);
       hourlyDescription.push(
-        this.props.day.hourly[i].bottom[0].weatherDesc[0].value
+        this.props.day.hourly[i].weatherDesc[0].value
       );
       hourlyDescriptionPics.push(
-        this.props.day.hourly[i].bottom[0].weatherIconUrl[0].value
+        this.props.day.hourly[i].weatherIconUrl[0].value
       );
     }
 

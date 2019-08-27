@@ -64,15 +64,16 @@ class App extends Component {
   }
 
   handleAutoComplete(townAndState, event) {
-    console.log(event, "event");
+    // console.log(event, "event");
 
     this.setState({ isLoading: true });
     //getting skiInfo
     axios
       .get(
-        `https://api.worldweatheronline.com/premium/v1/ski.ashx?key=${skiKey}&q=${townAndState}&format=json&num_of_days=7`
+        `https://api.worldweatheronline.com/premium/v1/weather.ashx?key=${skiKey}&q=${townAndState}&format=json&num_of_days=7`
       )
       .then(response => {
+        console.log(response.data, "event");
         this.setState({ skiInfo: response.data });
         if (response.data.data.weather.length === 1) {
           this.setState({ isOffSeason: true });
