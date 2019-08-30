@@ -55,14 +55,6 @@ class App extends Component {
     });
   }
 
-  handleKeyDown(event) {
-    
-    if (event.keyCode === 13) {
-      console.log("Enter key pressed");
-      event.preventDefault();
-    }
-  }
-
   handleAutoComplete(townAndState, event) {
     // console.log(event, "event");
 
@@ -275,15 +267,16 @@ class App extends Component {
           </Jumbotron>
 
           <Col className="search-container">
-            <Form>
+            <Form onSubmit={e => { e.preventDefault(); }}>
               <FormGroup autoFocus>
                 <Label className="search-header" for="exampleSearch">
                   Search By Town Of Resort
                 </Label>
 
                 <Autocomplete
+              
                   className="auto-complete"
-                  onKeyUp={this.handleKeyDown}
+                  
                   onPlaceSelected={place => {
                     if (place.address_components.length < 3) {
                       return alert("Please enter in format: Town Name, State");

@@ -52,7 +52,6 @@ export default class SkiInfo extends Component {
     return (
       <div>
         {display}
-        
       </div>
     )
   }
