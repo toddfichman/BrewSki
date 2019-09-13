@@ -20,13 +20,17 @@
 }
 
 
+
+
 .dropdown-btn:focus {
   box-shadow: none !important;
 }
 
-.weather-img {
-  border-radius: 50%;
-  height: 50%
+.dropdown-btn-signal {
+  font-size: 30px;
+  position: absolute;
+  top: 16px;
+  padding-left: 5px;
 }
 
 .chart-container {

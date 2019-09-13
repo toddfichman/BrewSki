@@ -50,6 +50,14 @@
 
 .dropdown-btn {
   padding: 1rem !important;
+  
+}
+
+.dropdown-btn-signal-brewery {
+  font-size: 30px;
+  position: absolute;
+  top: 36px;
+  padding-left: 5px;
 }
 
 .page-container {

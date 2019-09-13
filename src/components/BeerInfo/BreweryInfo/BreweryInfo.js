@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Collapse, CardText, Card, Button } from 'reactstrap';
+import {  Collapse, CardText, Card, Button, ListGroupItem } from 'reactstrap';
 import Linkify from 'react-linkify';
 import NumberFormat from 'react-number-format';
 
@@ -17,8 +17,8 @@ export default class BreweryInfo extends Component {
 
   render() {
     return (
-      <div className="list-item brewery-card">
-        <Button className="dropdown-btn" onClick={() => this.toggle()} >{this.props.name}{this.state.collapse ?  "-" :  "+"}</Button>
+      <ListGroupItem style={{borderRadius: '10px'}} className="list-item brewery-card">
+        <Button className="dropdown-btn" onClick={() => this.toggle()} >{this.props.name}<span className='dropdown-btn-signal-brewery'>{this.state.collapse ?  "-" :  "+"}</span></Button>
           <Collapse isOpen={this.state.collapse} >
             <Card style={{border: 'none'}}>
             <CardText className="brewery-distance">
@@ -35,7 +35,7 @@ export default class BreweryInfo extends Component {
               </CardText>
             </Card>
           </Collapse>
-      </ div>
+      </ ListGroupItem>
     )
   }
 }

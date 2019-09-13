@@ -39,7 +39,6 @@ class App extends Component {
     stateBeerInfo: [],
     nearbyBeerInfo: [],
     isLoading: false,
-    loggedIn: false,
     isOffSeason: false
   };
 
@@ -64,16 +63,17 @@ class App extends Component {
         `https://api.worldweatheronline.com/premium/v1/weather.ashx?key=${skiKey}&q=${townAndState}&format=json&num_of_days=7`
       )
       .then(response => {
-        console.log(response.data, "event");
         this.setState({ skiInfo: response.data });
-        // if (response.data.data.weather.length === 1) {
-        //   this.setState({ isOffSeason: true });
-        // }
+        console.log(response.data.data.weather, 'response.data.data.weather')
+        if (response.data.data.weather.length === 1) {
+          this.setState({ isOffSeason: true });
+        }
       })
       .catch(error => {
         console.log(error);
       });
 
+    // Altering user input to be proper format for brewery API
     let splitTownAndState = townAndState.split(",");
     let town = splitTownAndState[0];
     town = town.split(" ");
@@ -112,6 +112,8 @@ class App extends Component {
 
         this.setState({ townBeerInfo: townBreweryInfo });
 
+        // Splitting brewery response into 2 equal length arrays
+        // b/c google.maps.DistanceMatrixService can only handle 25 at once
         let splitArray = chunkify(stateBreweryInfo, 2, true);
         let stateBreweryInfo1 = splitArray[0];
         let stateBreweryInfo2 = splitArray[1];
@@ -124,8 +126,7 @@ class App extends Component {
           return brewery.city + ", " + brewery.state;
         });
 
-        //Can only handle 25 destinations per
-        //might need to call multiple times one after another
+        //Can only handle 25 destinations per call
         var service = new google.maps.DistanceMatrixService();
         service.getDistanceMatrix(
           {
@@ -205,7 +206,7 @@ class App extends Component {
 
     let beerHeader = this.state.townName ? (
       <h4>
-        Local Brewery Report For {this.state.townName}, {this.state.stateName}
+        Brewery Report For {this.state.townName}, {this.state.stateName}
       </h4>
     ) : (
       <h4>Local Beer Report For...</h4>

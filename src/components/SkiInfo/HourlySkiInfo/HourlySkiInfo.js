@@ -114,7 +114,7 @@ export default class HourlySkiInfo extends Component {
           color="white"
           onClick={() => this.toggle()}
         >
-          Breakdown{this.state.collapse ? "-" : "+"}
+          Breakdown{' '}<span className="dropdown-btn-signal">{this.state.collapse ? "-" : "+"}</span>
         </Button>
         <Collapse isOpen={this.state.collapse}>
           <Card style={{ border: "none", color: "#757575" }}>
