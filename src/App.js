@@ -26,7 +26,7 @@ const google = window.google;
 
 require("dotenv").config();
 
-//successfully accessing key
+
 let skiKey = process.env.REACT_APP_SKI_API_KEY;
 
 class App extends Component {
@@ -55,8 +55,7 @@ class App extends Component {
     });
   }
 
-  handleAutoComplete(townAndState, event) {
-    // console.log(event, "event");
+  handleAutoComplete(townAndState) {
 
     this.setState({ isLoading: true });
     //getting skiInfo
@@ -67,9 +66,9 @@ class App extends Component {
       .then(response => {
         console.log(response.data, "event");
         this.setState({ skiInfo: response.data });
-        if (response.data.data.weather.length === 1) {
-          this.setState({ isOffSeason: true });
-        }
+        // if (response.data.data.weather.length === 1) {
+        //   this.setState({ isOffSeason: true });
+        // }
       })
       .catch(error => {
         console.log(error);
