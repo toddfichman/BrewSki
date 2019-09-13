@@ -7,7 +7,7 @@ import {
   Form,
   FormGroup,
   Label,
-  CardHeader,
+  CardHeader
 } from "reactstrap";
 import Autocomplete from "react-google-autocomplete";
 
@@ -25,7 +25,6 @@ import axios from "axios";
 const google = window.google;
 
 require("dotenv").config();
-
 
 let skiKey = process.env.REACT_APP_SKI_API_KEY;
 
@@ -55,7 +54,6 @@ class App extends Component {
   }
 
   handleAutoComplete(townAndState) {
-
     this.setState({ isLoading: true });
     //getting skiInfo
     axios
@@ -64,7 +62,6 @@ class App extends Component {
       )
       .then(response => {
         this.setState({ skiInfo: response.data });
-        console.log(response.data.data.weather, 'response.data.data.weather')
         if (response.data.data.weather.length === 1) {
           this.setState({ isOffSeason: true });
         }
@@ -126,6 +123,7 @@ class App extends Component {
           return brewery.city + ", " + brewery.state;
         });
 
+        // Gets distance of other breweries from input town
         //Can only handle 25 destinations per call
         var service = new google.maps.DistanceMatrixService();
         service.getDistanceMatrix(
@@ -246,13 +244,6 @@ class App extends Component {
 
     return (
       <div className="app">
-        {/* <Navbar color="light" light expand="md">
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink style={{fontWeight: 'bold'}}>Login To Save</NavLink>
-          </NavItem>
-        </Nav>
-      </Navbar> */}
         <Container fluid className="jumbotron-search">
           <Jumbotron fluid>
             <Container fluid>
@@ -267,16 +258,18 @@ class App extends Component {
           </Jumbotron>
 
           <Col className="search-container">
-            <Form onSubmit={e => { e.preventDefault(); }}>
+            <Form
+              onSubmit={e => {
+                e.preventDefault();
+              }}
+            >
               <FormGroup autoFocus>
                 <Label className="search-header" for="exampleSearch">
                   Search By Town Of Resort
                 </Label>
 
                 <Autocomplete
-              
                   className="auto-complete"
-                  
                   onPlaceSelected={place => {
                     if (place.address_components.length < 3) {
                       return alert("Please enter in format: Town Name, State");
@@ -285,7 +278,6 @@ class App extends Component {
 
                     this.handleAutoComplete(this.state.townAndState);
                   }}
-                  
                   types={["(regions)"]}
                   componentRestrictions={{ country: "us" }}
                 />

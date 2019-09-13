@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ListGroupItem, Collapse, Row, Col, Card, Button } from "reactstrap";
 import { Line } from "react-chartjs-2";
 
-
 import "./HourlySkiInfo.css";
 
 export default class HourlySkiInfo extends Component {
@@ -11,22 +10,17 @@ export default class HourlySkiInfo extends Component {
     width: window.outerWidth
   };
 
-  
-
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
 
   render() {
-    
     let hourlyTemp = [];
     let hourlyDescription = [];
     let hourlyDescriptionPics = [];
     for (let i = 0; i < this.props.day.hourly.length; i++) {
       hourlyTemp.push(this.props.day.hourly[i].tempF);
-      hourlyDescription.push(
-        this.props.day.hourly[i].weatherDesc[0].value
-      );
+      hourlyDescription.push(this.props.day.hourly[i].weatherDesc[0].value);
       hourlyDescriptionPics.push(
         this.props.day.hourly[i].weatherIconUrl[0].value
       );
@@ -44,7 +38,7 @@ export default class HourlySkiInfo extends Component {
         "08:00 PM",
         "11:00 PM"
       ],
-      
+
       datasets: [
         {
           label: "Temperature",
@@ -55,20 +49,17 @@ export default class HourlySkiInfo extends Component {
           hourlyDescPics: hourlyDescriptionPics,
           pointRadius: 5,
           pointHitRadius: 20,
-          fill: false,
+          fill: false
         }
       ]
     };
-    
 
     let graph = (
       <div>
         <Line
           height={window.outerWidth > 750 ? 175 : 250}
-        
           data={chartData}
           options={{
-            
             title: {
               display: true,
               text: "Temperature Breakdown",
@@ -91,16 +82,18 @@ export default class HourlySkiInfo extends Component {
               displayColors: false
             },
             scales: {
-              yAxes: [{
-                display: true,
-                ticks: {
-                  suggestedMin: Math.min.apply(this, hourlyTemp) - 5,
-                  suggestedMax: Math.max.apply(this, hourlyTemp) + 5,
-                  callback: function(value, index, values) {
-                    return  value + " °F";
+              yAxes: [
+                {
+                  display: true,
+                  ticks: {
+                    suggestedMin: Math.min.apply(this, hourlyTemp) - 5,
+                    suggestedMax: Math.max.apply(this, hourlyTemp) + 5,
+                    callback: function(value, index, values) {
+                      return value + " °F";
+                    }
+                  }
                 }
-                }
-              }]
+              ]
             }
           }}
         />
@@ -114,14 +107,16 @@ export default class HourlySkiInfo extends Component {
           color="white"
           onClick={() => this.toggle()}
         >
-          Breakdown{' '}<span className="dropdown-btn-signal">{this.state.collapse ? "-" : "+"}</span>
+          Breakdown{" "}
+          <span className="dropdown-btn-signal">
+            {this.state.collapse ? "-" : "+"}
+          </span>
         </Button>
         <Collapse isOpen={this.state.collapse}>
           <Card style={{ border: "none", color: "#757575" }}>
             <Row>
               <Col className="chart-container">{graph}</Col>
             </Row>
-            
           </Card>
         </Collapse>
       </ListGroupItem>

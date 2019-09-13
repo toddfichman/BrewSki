@@ -1,11 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import './Spinner.css'
+import "./Spinner.css";
 
 const spinner = () => (
   <div className="spinner">
-    <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div className="lds-default">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
-)
+);
 
 export default spinner;

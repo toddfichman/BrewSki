@@ -1,11 +1,6 @@
-/* .hourly-temp {
-  float: right;
-} */
-
 .hourly-container {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-
 
 .dropdown-btn {
   margin-bottom: 2rem;
@@ -13,14 +8,9 @@
   color: white;
   font-weight: 700;
   width: 100%;
-  background-color: #92C0DB !important;
-  
+  background-color: #92c0db !important;
   border: none !important;
-  /* height: 2.5rem; */
 }
-
-
-
 
 .dropdown-btn:focus {
   box-shadow: none !important;
